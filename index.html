@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VerBal Marketing Agency — Transformamos pensamientos en mensajes, mensajes en impacto. Estrategia digital, ecommerce, contenido y más." />
+  <title>VerBal Marketing Agency</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =============================================
+       NAVIGATION
+  ============================================= -->
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Navegación principal">
+
+      <!-- Logo speech bubble (SVG) -->
+      <a href="#inicio" class="nav-logo" aria-label="VerBal Marketing Agency — inicio">
+        <svg class="logo-bubble" viewBox="0 0 160 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo VerBal">
+          <path d="M8 0 H152 Q160 0 160 8 V44 Q160 52 152 52 H90 L80 60 L70 52 H8 Q0 52 0 44 V8 Q0 0 8 0 Z" fill="#A8C8D8"/>
+          <text x="80" y="22" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="18" fill="#D45A2A">VerBal</text>
+          <text x="80" y="40" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="600" font-size="9" fill="#F5A623" letter-spacing="1">marketing agency</text>
+        </svg>
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#verbal">Quiénes somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotras">Nosotras</a></li>
+        <li><a href="#portfolio">Trabajos</a></li>
+        <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil" hidden>
+      <ul role="list">
+        <li><a href="#verbal">Quiénes somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotras">Nosotras</a></li>
+        <li><a href="#portfolio">Trabajos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =============================================
+         SECTION 1: HERO
+    ============================================= -->
+    <section id="inicio" class="hero" aria-labelledby="hero-heading">
+
+      <!-- Decorative shapes -->
+      <div class="hero-shape hero-shape--circle" aria-hidden="true"></div>
+      <div class="hero-shape hero-shape--dot-grid" aria-hidden="true"></div>
+
+      <div class="hero-content container">
+        <div class="hero-text fade-in">
+
+          <!-- Big speech bubble logo for hero -->
+          <div class="hero-logo" aria-hidden="true">
+            <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" class="hero-bubble">
+              <path d="M14 0 H306 Q320 0 320 14 V88 Q320 102 306 102 H180 L160 120 L140 102 H14 Q0 102 0 88 V14 Q0 0 14 0 Z" fill="#A8C8D8"/>
+              <text x="160" y="48" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="42" fill="#D45A2A">VerBal</text>
+              <text x="160" y="80" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="600" font-size="16" fill="#F5A623" letter-spacing="3">marketing agency</text>
+            </svg>
+          </div>
+
+          <h1 id="hero-heading" class="hero-tagline">
+            Transformamos pensamientos<br/>
+            en <span class="highlight">mensajes</span>,<br/>
+            mensajes en <span class="highlight">impacto</span>.
+          </h1>
+          <p class="hero-sub">
+            Estrategia, contenido, ecommerce y experiencias de marca<br class="hide-mobile"/>
+            que convierten ideas en resultados reales.
+          </p>
+          <div class="hero-actions">
+            <a
+              href="https://wa.me/5491138406375?text=Hola%20VerBal!%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios"
+              class="btn btn--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contactar por WhatsApp"
+            >
+              <!-- WhatsApp icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Hablemos
+            </a>
+            <a href="#servicios" class="btn btn--outline">Ver servicios</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <a href="#verbal" class="scroll-hint" aria-label="Ir a la siguiente sección">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M7 10l5 5 5-5"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- =============================================
+         SECTION 2: QUÉ ES VERBAL
+    ============================================= -->
+    <section id="verbal" class="manifesto fade-in" aria-labelledby="verbal-heading">
+      <div class="container">
+        <div class="manifesto-grid">
+
+          <div class="manifesto-text">
+            <span class="section-label">¿Qué es VerBal?</span>
+            <h2 id="verbal-heading">
+              Una agencia que<br/>
+              <em>habla tu idioma</em>.
+            </h2>
+            <p>
+              VerBal nació de la convicción de que detrás de cada marca hay una historia que vale la pena contar.
+              Somos Berni y Valen: dos profesionales apasionadas por la estrategia, el contenido y las conexiones reales.
+            </p>
+            <p>
+              No creemos en fórmulas genéricas. Creemos en entender tu negocio desde adentro,
+              diseñar estrategias que tengan sentido para <strong>tu</strong> marca y acompañarte
+              en cada paso del camino.
+            </p>
+            <p>
+              Trabajamos con marcas, emprendedores y empresas que quieren mejorar su presencia digital,
+              aumentar ventas online, lanzar productos o generar experiencias memorables.
+              Si tenés una idea, nosotras la transformamos en impacto.
+            </p>
+          </div>
+
+          <div class="manifesto-visual" aria-hidden="true">
+            <div class="manifesto-card manifesto-card--1">
+              <span>Estrategia</span>
+            </div>
+            <div class="manifesto-card manifesto-card--2">
+              <span>Creatividad</span>
+            </div>
+            <div class="manifesto-card manifesto-card--3">
+              <span>Resultados</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECTION 3: SERVICIOS
+    ============================================= -->
+    <section id="servicios" class="services fade-in" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Lo que hacemos</span>
+          <h2 id="services-heading">Servicios</h2>
+        </div>
+
+        <div class="services-grid">
+
+          <!-- Service 1 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M16 24h16M24 16v16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M13 17l3 3M35 17l-3 3M13 31l3-3M35 31l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Estrategia de Marketing Digital</h3>
+            <p>Planificamos tu presencia online con objetivos claros, canales adecuados y acciones medibles.</p>
+          </article>
+
+          <!-- Service 2 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="10" width="36" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M16 22l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 18h36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Gestión y Optimización de Ecommerce</h3>
+            <p>Potenciamos tu tienda online: experiencia de compra, conversión, métricas y crecimiento sostenido.</p>
+          </article>
+
+          <!-- Service 3 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 38L20 20l8 8 6-10 6 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="38" cy="12" r="6" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M38 9v3l2 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Publicidad Digital</h3>
+            <p>Campañas en Meta Ads y Google Ads optimizadas para alcanzar a las personas correctas en el momento justo.</p>
+          </article>
+
+          <!-- Service 4 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="6" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2.5"/>
+                <rect x="26" y="6" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2.5"/>
+                <rect x="6" y="26" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2.5"/>
+                <rect x="26" y="26" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2.5"/>
+              </svg>
+            </div>
+            <h3>Estrategia y Gestión de Marketplaces</h3>
+            <p>Optimizamos tu presencia en MercadoLibre y otros marketplaces para maximizar visibilidad y ventas.</p>
+          </article>
+
+          <!-- Service 5 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="24" r="8" stroke="currentColor" stroke-width="2.5"/>
+                <circle cx="32" cy="24" r="8" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M22 18c1.2-1.2 2.8-1.2 4 0M22 30c1.2 1.2 2.8 1.2 4 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Marketing Cross y Colaboraciones</h3>
+            <p>Creamos sinergias entre marcas para ampliar audiencias, generar valor compartido y sumar impacto.</p>
+          </article>
+
+          <!-- Service 6 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2.5"/>
+                <rect x="26" y="8" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2.5"/>
+                <rect x="8" y="26" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M26 33h14M33 26v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Creación de Contenido y Redes Sociales</h3>
+            <p>Estrategia editorial, producción de contenido y gestión de redes que construyen comunidades reales.</p>
+          </article>
+
+          <!-- Service 7 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 8l4 8h8l-6 6 2 9-8-5-8 5 2-9-6-6h8l4-8z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M12 38l-4 4M36 38l4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Lanzamiento de Productos o Marcas</h3>
+            <p>Planificamos y ejecutamos lanzamientos con estrategia 360°: comunicación, activaciones y amplificación.</p>
+          </article>
+
+          <!-- Service 8 -->
+          <article class="service-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 38V24c0-9 6-16 16-16s16 7 16 16v14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M4 38h40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="24" cy="28" r="3" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M24 25v-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Eventos y Experiencias de Marca</h3>
+            <p>Diseñamos y producimos eventos que generan conexiones emocionales y memorias de marca duraderas.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECTION 4: NOSOTRAS (TEAM)
+    ============================================= -->
+    <section id="nosotras" class="team fade-in" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">El equipo</span>
+          <h2 id="team-heading">Nosotras</h2>
+        </div>
+
+        <div class="team-grid">
+
+          <!-- Team member: Valentina
+               TO EDIT PHOTO: replace the .team-avatar div with <img src="foto-valentina.jpg" alt="Valentina Valle" class="team-photo" />
+               and add CSS: .team-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; }
+          -->
+          <article class="team-card">
+            <div class="team-avatar" aria-label="Foto de Valentina Valle (placeholder)">
+              <span>VV</span>
+            </div>
+            <h3>Valentina Valle</h3>
+            <p class="team-role">Estrategia & Experiencias de Marca</p>
+            <p class="team-bio">
+              Analista de Marketing Senior con experiencia en Rabieta/Guinness y Grupo La Emilia.
+              Especialista en eventos, activaciones, campañas digitales y relación con prensa e influencers.
+              Lic. en Comunicación Social (UCES).
+            </p>
+            <ul class="team-skills" aria-label="Skills de Valentina">
+              <li>Eventos & Activaciones</li>
+              <li>Campañas de Comunicación</li>
+              <li>Influencer Marketing</li>
+              <li>Canva · SAP · Emblue</li>
+            </ul>
+          </article>
+
+          <!-- Team member: Bernardita
+               TO EDIT PHOTO: replace the .team-avatar div with <img src="foto-berni.jpg" alt="Bernardita Fazzini" class="team-photo" />
+               and add CSS: .team-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; }
+          -->
+          <article class="team-card">
+            <div class="team-avatar team-avatar--berni" aria-label="Foto de Bernardita Fazzini (placeholder)">
+              <span>BF</span>
+            </div>
+            <h3>Bernardita Fazzini</h3>
+            <p class="team-role">Ecommerce & Estrategia Digital</p>
+            <p class="team-bio">
+              Lic. en Gerenciamiento Económico Intercultural (USAL). Especialista en Ecommerce con
+              experiencia en Farmacity, La Yungeré y Glam Distribuciones.
+              Multilingüe: español, inglés, alemán y francés.
+            </p>
+            <ul class="team-skills" aria-label="Skills de Bernardita">
+              <li>Ecommerce & MELI</li>
+              <li>KPIs & Growth Marketing</li>
+              <li>Campañas Comerciales</li>
+              <li>4 idiomas</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECTION 5: PORTFOLIO / TRABAJOS
+
+         HOW TO ADD NEW WORK:
+         Copy one of the portfolio-card articles below and fill in:
+           - data-client="Nombre del cliente"
+           - data-year="2025"
+           - data-category="Ecommerce / Redes / Eventos / etc."
+           - The <h3> title
+           - The <p> description
+           - Replace .portfolio-placeholder with <img src="imagen.jpg" alt="..." />
+         Then remove the "coming-soon" class from the article.
+
+    ============================================= -->
+    <section id="portfolio" class="portfolio fade-in" aria-labelledby="portfolio-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Nuestro trabajo</span>
+          <h2 id="portfolio-heading">Cases & Proyectos</h2>
+        </div>
+
+        <div class="portfolio-grid">
+
+          <!-- PORTFOLIO ITEM 1 — replace content when ready -->
+          <article
+            class="portfolio-card coming-soon"
+            data-client="Cliente 1"
+            data-year="2025"
+            data-category="Estrategia Digital"
+          >
+            <div class="portfolio-placeholder" aria-hidden="true">
+              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="80" height="60" rx="4" fill="#D45A2A" fill-opacity=".15"/>
+                <path d="M30 20h20v20H30z" stroke="#D45A2A" stroke-width="2" stroke-dasharray="4 2"/>
+                <path d="M35 30h10M40 25v10" stroke="#D45A2A" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Estrategia Digital</span>
+              <h3>Próximamente</h3>
+              <p>Estamos cocinando algo increíble. Pronto vas a poder ver este case aquí.</p>
+            </div>
+          </article>
+
+          <!-- PORTFOLIO ITEM 2 — replace content when ready -->
+          <article
+            class="portfolio-card coming-soon"
+            data-client="Cliente 2"
+            data-year="2025"
+            data-category="Ecommerce"
+          >
+            <div class="portfolio-placeholder" aria-hidden="true">
+              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="80" height="60" rx="4" fill="#A8C8D8" fill-opacity=".3"/>
+                <path d="M25 38l10-18 8 8 5-8 7 18" stroke="#D45A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Ecommerce</span>
+              <h3>Próximamente</h3>
+              <p>Un proyecto de crecimiento en ventas digitales que habla por sí solo.</p>
+            </div>
+          </article>
+
+          <!-- PORTFOLIO ITEM 3 — replace content when ready -->
+          <article
+            class="portfolio-card coming-soon"
+            data-client="Cliente 3"
+            data-year="2025"
+            data-category="Eventos"
+          >
+            <div class="portfolio-placeholder" aria-hidden="true">
+              <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="80" height="60" rx="4" fill="#F5A623" fill-opacity=".2"/>
+                <circle cx="40" cy="28" r="12" stroke="#D45A2A" stroke-width="2"/>
+                <path d="M40 20v8l5 3" stroke="#D45A2A" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Eventos & Experiencias</span>
+              <h3>Próximamente</h3>
+              <p>Una experiencia de marca que dejó huella. Contamos la historia pronto.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SECTION 6: CONTACTO
+    ============================================= -->
+    <section id="contacto" class="contact fade-in" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Escribinos</span>
+          <h2 id="contact-heading">¿Trabajamos juntos?</h2>
+          <p class="section-subtitle">
+            Contanos sobre tu proyecto y te respondemos en menos de 24 horas.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+
+          <!-- Contact form
+               FORMSPREE SETUP:
+               1. Registrarse gratis en https://formspree.io
+               2. Crear un nuevo form y copiar el endpoint (ej: https://formspree.io/f/abc12345)
+               3. Reemplazar "XXXXXXXX" en la action del formulario de abajo
+          -->
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/XXXXXXXX"
+            method="POST"
+            novalidate
+            aria-label="Formulario de contacto"
+          >
+            <!-- ↑ FORMSPREE: reemplazar XXXXXXXX con tu endpoint real de formspree.io -->
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Tu nombre <span aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Ej: María González"
+                  required
+                  autocomplete="name"
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label for="company">Empresa / Marca</label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  placeholder="Ej: Mi Marca SRL"
+                  autocomplete="organization"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="tu@email.com"
+                required
+                autocomplete="email"
+                aria-required="true"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="service">Servicio de interés</label>
+              <select id="service" name="service">
+                <option value="" disabled selected>Elegí una opción</option>
+                <option value="estrategia-digital">Estrategia de Marketing Digital</option>
+                <option value="ecommerce">Gestión y Optimización de Ecommerce</option>
+                <option value="publicidad">Publicidad Digital (Meta y Google Ads)</option>
+                <option value="marketplaces">Estrategia y Gestión de Marketplaces</option>
+                <option value="marketing-cross">Marketing Cross y Colaboraciones</option>
+                <option value="contenido-redes">Contenido y Redes Sociales</option>
+                <option value="lanzamiento">Lanzamiento de Productos o Marcas</option>
+                <option value="eventos">Eventos y Experiencias de Marca</option>
+                <option value="otro">Otro / No sé aún</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Tu mensaje <span aria-hidden="true">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Contanos sobre tu proyecto, marca o lo que tenés en mente..."
+                required
+                aria-required="true"
+              ></textarea>
+            </div>
+
+            <!-- Honeypot spam field (hidden) -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <button type="submit" class="btn btn--primary btn--full">
+              Enviar mensaje
+            </button>
+
+            <!-- Form feedback messages -->
+            <div class="form-success" role="alert" aria-live="polite" hidden>
+              ¡Gracias! Tu mensaje fue enviado. Te respondemos en breve 🎉
+            </div>
+            <div class="form-error" role="alert" aria-live="polite" hidden>
+              Ups, algo salió mal. Intentá de nuevo o escribinos por WhatsApp.
+            </div>
+          </form>
+
+          <!-- Direct contact options -->
+          <aside class="contact-direct" aria-label="Contacto directo">
+            <h3>O escribinos directo</h3>
+
+            <a
+              href="https://wa.me/5491138406375?text=Hola%20VerBal!%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios"
+              class="contact-link contact-link--whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contactar por WhatsApp al +54 11 38406375"
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>+54 11 38406375</span>
+              </div>
+            </a>
+
+            <!--
+              INSTAGRAM: reemplazar "verbal" con el handle real de la agencia
+              Ejemplo: https://instagram.com/verbal.agency
+            -->
+            <a
+              href="https://instagram.com/verbal"
+              class="contact-link contact-link--instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Seguinos en Instagram @verbal"
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <div>
+                <strong>Instagram</strong>
+                <span>@verbal</span>
+              </div>
+            </a>
+
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Footer logo + tagline -->
+        <div class="footer-brand">
+          <a href="#inicio" aria-label="VerBal — volver al inicio">
+            <svg class="footer-logo" viewBox="0 0 200 76" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VerBal Marketing Agency">
+              <path d="M10 0 H190 Q200 0 200 10 V54 Q200 64 190 64 H116 L100 76 L84 64 H10 Q0 64 0 54 V10 Q0 0 10 0 Z" fill="#A8C8D8"/>
+              <text x="100" y="30" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="900" font-size="24" fill="#D45A2A">VerBal</text>
+              <text x="100" y="52" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="600" font-size="11" fill="#F5A623" letter-spacing="2">marketing agency</text>
+            </svg>
+          </a>
+          <p>Transformamos pensamientos en mensajes,<br/>mensajes en impacto.</p>
+        </div>
+
+        <!-- Footer nav -->
+        <nav class="footer-nav" aria-label="Mapa del sitio">
+          <h4>Navegación</h4>
+          <ul role="list">
+            <li><a href="#verbal">Quiénes somos</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#nosotras">Nosotras</a></li>
+            <li><a href="#portfolio">Trabajos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <!-- Footer social links -->
+        <div class="footer-social">
+          <h4>Encontranos</h4>
+
+          <!--
+            RRSS: actualizar los links con los handles reales:
+            - Instagram: reemplazar "verbal" con el handle definitivo
+            - WhatsApp: el número ya está configurado (+54 11 38406375)
+          -->
+          <a
+            href="https://instagram.com/verbal"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="Instagram de VerBal"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            @verbal
+          </a>
+
+          <a
+            href="https://wa.me/5491138406375?text=Hola%20VerBal!%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="WhatsApp de VerBal"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            +54 11 38406375
+          </a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2025</span> VerBal Marketing Agency. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
