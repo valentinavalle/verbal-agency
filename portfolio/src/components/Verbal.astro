@@ -1,0 +1,52 @@
+---
+import { perfil } from '../data/perfil';
+import Icono from './Icono.astro';
+
+const { verbal } = perfil;
+---
+
+<section id="verbal" class="seccion tema-tinta" aria-labelledby="verbal-titulo">
+  <div class="contenedor verbal__grilla">
+    <h2 id="verbal-titulo" class="verbal__titulo reveal">{verbal.titulo}</h2>
+    <div class="verbal__texto reveal" style="--retraso: 0.1s">
+      <p>{verbal.texto}</p>
+      {
+        verbal.sitio && (
+          <a href={verbal.sitio} class="btn btn--lima" target="_blank" rel="noopener">
+            Conocer VERBAL
+            <Icono nombre="flecha" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .verbal__grilla {
+    display: grid;
+    gap: 1.75rem;
+    align-items: start;
+  }
+  .verbal__titulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(2.25rem, 9vw, 4.5rem);
+    line-height: 1;
+    color: var(--lima);
+  }
+  .verbal__texto {
+    display: grid;
+    gap: 1.75rem;
+    justify-items: start;
+    font-size: clamp(1.125rem, 2.3vw, 1.4rem);
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+  @media (min-width: 900px) {
+    .verbal__grilla {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 4rem;
+    }
+  }
+</style>

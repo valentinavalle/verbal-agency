@@ -1,0 +1,94 @@
+---
+import { perfil } from '../data/perfil';
+import Icono from './Icono.astro';
+
+const { contacto: c, contactoSeccion: s } = perfil;
+---
+
+<section id="contacto" class="seccion tema-violeta contacto" aria-labelledby="contacto-titulo">
+  <svg class="contacto__blob" viewBox="0 0 200 200" aria-hidden="true">
+    <path
+      fill="var(--lima)"
+      transform="translate(100 100)"
+      d="M44.7,-51.2C56.9,-40.3,64.6,-24.4,66.5,-7.9C68.4,8.6,64.5,25.7,54.6,38.5C44.7,51.3,28.8,59.8,11.3,63.5C-6.2,67.2,-25.3,66.1,-40.5,57C-55.7,47.9,-67,30.8,-69.9,12.7C-72.8,-5.4,-67.3,-24.5,-55.9,-35.6C-44.5,-46.7,-27.2,-49.8,-10.6,-53.4C6,-57,32.5,-62.1,44.7,-51.2Z"
+    ></path>
+  </svg>
+
+  <div class="contenedor contacto__contenido">
+    <h2 id="contacto-titulo" class="titulo contacto__titulo reveal">{s.titulo}</h2>
+    <p class="bajada reveal" style="--retraso: 0.08s">{s.bajada}</p>
+
+    <div class="contacto__botones reveal" style="--retraso: 0.16s">
+      <a href={`mailto:${c.mail}`} class="btn btn--lima">
+        <Icono nombre="email" />
+        Escribime un mail
+      </a>
+      <a href={c.whatsappLink} class="btn btn--rosa" target="_blank" rel="noopener">
+        <Icono nombre="whatsapp" />
+        WhatsApp
+      </a>
+      <a href={c.linkedin} class="btn btn--borde-claro" target="_blank" rel="noopener">
+        <Icono nombre="linkedin" />
+        LinkedIn
+      </a>
+      <a href={c.cv} class="btn btn--borde-claro" download>
+        <Icono nombre="descargar" />
+        Descargar CV
+      </a>
+    </div>
+
+    <p class="contacto__datos reveal" style="--retraso: 0.24s">
+      <a href={`mailto:${c.mail}`}>{c.mail}</a>
+      <span aria-hidden="true">·</span>
+      <a href={c.whatsappLink} target="_blank" rel="noopener">{c.whatsappTexto}</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .contacto {
+    position: relative;
+    overflow: hidden;
+  }
+  .contacto__contenido {
+    position: relative;
+  }
+  .contacto__titulo {
+    font-size: clamp(2.75rem, 12vw, 7rem);
+    margin-bottom: 1.5rem;
+  }
+  .contacto .bajada {
+    color: var(--blanco);
+    margin-bottom: 2.25rem;
+  }
+  .contacto__botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+  .contacto__datos {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+  }
+  .contacto__datos a {
+    color: var(--blanco);
+  }
+  .contacto__datos a:hover {
+    color: var(--lima);
+  }
+  .contacto__blob {
+    position: absolute;
+    right: -14%;
+    bottom: -28%;
+    width: min(70vw, 460px);
+    pointer-events: none;
+  }
+  @media (min-width: 900px) {
+    .contacto__blob {
+      right: 2%;
+      bottom: -18%;
+    }
+  }
+</style>

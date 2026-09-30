@@ -1,0 +1,207 @@
+---
+import { perfil } from '../data/perfil';
+import Icono from './Icono.astro';
+---
+
+<header class="cabecera tema-violeta">
+  <div class="contenedor cabecera__fila">
+    <a href="/" class="cabecera__logo" aria-label={`${perfil.nombre}, ir al inicio`}>
+      {perfil.nombrePila} <span>{perfil.apellido}</span>
+    </a>
+
+    <button
+      type="button"
+      class="cabecera__boton"
+      aria-expanded="false"
+      aria-controls="menu-principal"
+      aria-label="Abrir menú"
+    >
+      <Icono nombre="menu" class="icono-abrir" />
+      <Icono nombre="cerrar" class="icono-cerrar" />
+    </button>
+
+    <nav id="menu-principal" class="cabecera__nav" aria-label="Principal">
+      <ul>
+        {
+          perfil.navegacion.map((item) => (
+            <li>
+              <a href={`/${item.href}`} data-ancla={item.href}>
+                {item.etiqueta}
+              </a>
+            </li>
+          ))
+        }
+        <li class="cabecera__cta">
+          <a href="/#contacto" class="btn btn--rosa">Hablemos</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--alto-header);
+    border-bottom: 1px solid rgb(255 255 255 / 0.16);
+  }
+  .cabecera__fila {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .cabecera__logo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--blanco);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .cabecera__logo span {
+    color: var(--lima);
+  }
+  .cabecera__boton {
+    display: none;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid var(--blanco);
+    border-radius: 50%;
+    color: var(--blanco);
+    cursor: pointer;
+  }
+  .cabecera__boton :global(svg) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .cabecera__boton :global(.icono-cerrar) {
+    display: none;
+  }
+  .cabecera__boton[aria-expanded='true'] :global(.icono-abrir) {
+    display: none;
+  }
+  .cabecera__boton[aria-expanded='true'] :global(.icono-cerrar) {
+    display: block;
+  }
+
+  .cabecera__nav ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.75rem);
+  }
+  .cabecera__nav a:not(.btn) {
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    padding: 0.4rem 0.1rem;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .cabecera__nav a:not(.btn):hover,
+  .cabecera__nav a[aria-current='true'] {
+    border-bottom-color: var(--lima);
+  }
+  .cabecera__cta .btn {
+    min-height: 44px;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  /* Mobile: menú desplegable (solo si hay JS; sin JS la lista queda visible y se acomoda) */
+  @media (max-width: 899px) {
+    .cabecera__nav ul {
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+    }
+    :global(.js) .cabecera__boton {
+      display: inline-flex;
+    }
+    :global(.js) .cabecera__nav {
+      position: absolute;
+      inset: var(--alto-header) 0 auto 0;
+      background: var(--violeta);
+      border-bottom: 1px solid rgb(255 255 255 / 0.16);
+      padding: 1rem var(--gutter) 1.75rem;
+      display: none;
+    }
+    :global(.js) .cabecera__nav[data-abierto='true'] {
+      display: block;
+    }
+    :global(.js) .cabecera__nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    :global(.js) .cabecera__nav li {
+      border-bottom: 1px solid rgb(255 255 255 / 0.16);
+    }
+    :global(.js) .cabecera__nav a:not(.btn) {
+      display: block;
+      padding: 1rem 0;
+      font-size: 1.125rem;
+      border-bottom: 0;
+    }
+    :global(.js) .cabecera__nav a[aria-current='true'] {
+      color: var(--lima);
+    }
+    :global(.js) .cabecera__cta {
+      border-bottom: 0 !important;
+      padding-top: 1.25rem;
+    }
+    :global(.js) .cabecera__cta .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const boton = document.querySelector<HTMLButtonElement>('.cabecera__boton');
+  const nav = document.getElementById('menu-principal');
+
+  if (boton && nav) {
+    const alternar = (abrir: boolean) => {
+      boton.setAttribute('aria-expanded', String(abrir));
+      boton.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
+      nav.dataset.abierto = String(abrir);
+    };
+    boton.addEventListener('click', () => alternar(boton.getAttribute('aria-expanded') !== 'true'));
+    nav.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) alternar(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && boton.getAttribute('aria-expanded') === 'true') {
+        alternar(false);
+        boton.focus();
+      }
+    });
+  }
+
+  // Resalta el link de la sección que se está viendo (solo en el home).
+  if (location.pathname === '/' || location.pathname === '/index.html') {
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-ancla]'));
+    const secciones = links
+      .map((a) => document.querySelector(a.dataset.ancla ?? ''))
+      .filter((s): s is Element => !!s);
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          if (!entrada.isIntersecting) return;
+          links.forEach((a) => {
+            if (a.dataset.ancla === `#${entrada.target.id}`) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+          });
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    secciones.forEach((s) => observador.observe(s));
+  }
+</script>

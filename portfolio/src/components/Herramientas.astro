@@ -1,0 +1,119 @@
+---
+import { perfil } from '../data/perfil';
+
+const { herramientas: h } = perfil;
+---
+
+<section id="herramientas" class="seccion tema-blanco" aria-labelledby="herramientas-titulo">
+  <div class="contenedor">
+    <h2 id="herramientas-titulo" class="titulo-seccion reveal">{h.titulo}</h2>
+
+    <div class="bloques">
+      <div class="bloque reveal">
+        <h3 class="bloque__titulo">{h.herramientas.titulo}</h3>
+        <ul class="chips">
+          {h.herramientas.items.map((x) => <li class="chip">{x}</li>)}
+        </ul>
+        <h3 class="bloque__titulo bloque__titulo--aparte">{h.metodologias.titulo}</h3>
+        <ul class="chips">
+          {h.metodologias.items.map((x) => <li class="chip">{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="bloque reveal" style="--retraso: 0.08s">
+        <h3 class="bloque__titulo">{h.formacion.titulo}</h3>
+        <ul class="formacion">
+          {
+            h.formacion.items.map((x) => (
+              <li>
+                <strong>{x.titulo}</strong>
+                <span>{x.detalle}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="bloque reveal" style="--retraso: 0.16s">
+        <h3 class="bloque__titulo">{h.idiomas.titulo}</h3>
+        <ul class="idiomas">
+          {
+            h.idiomas.items.map((x) => (
+              <li>
+                <strong>{x.idioma}</strong>
+                <span class="etiqueta">{x.nivel}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bloques {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .bloque {
+    background: var(--lavanda);
+    border-radius: var(--radio-m);
+    padding: clamp(1.5rem, 3vw, 2rem);
+  }
+  .bloque__titulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .bloque__titulo--aparte {
+    margin-top: 1.75rem;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .bloque .chip {
+    background: var(--blanco);
+  }
+  .formacion {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .formacion li {
+    display: grid;
+    gap: 0.15rem;
+  }
+  .formacion span {
+    color: var(--tinta-suave);
+    font-size: 0.9375rem;
+  }
+  .idiomas {
+    display: grid;
+    gap: 0.85rem;
+  }
+  .idiomas li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .idiomas li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .idiomas .etiqueta {
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 900px) {
+    .bloques {
+      grid-template-columns: 1.15fr 1fr 0.85fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

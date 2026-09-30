@@ -1,0 +1,73 @@
+---
+import { perfil } from '../data/perfil';
+import Icono from './Icono.astro';
+
+const { comoTrabajo: c } = perfil;
+---
+
+<section id="como-trabajo" class="seccion tema-lavanda" aria-labelledby="como-trabajo-titulo">
+  <div class="contenedor">
+    <h2 id="como-trabajo-titulo" class="titulo-seccion reveal">{c.titulo}</h2>
+
+    <ul class="modos">
+      {
+        c.items.map((m, i) => (
+          <li class:list={['modo', 'reveal', i === 0 ? 'modo--lima' : 'modo--rosa']} style={`--retraso: ${i * 0.08}s`}>
+            <h3 class="modo__titulo">{m.titulo}</h3>
+            <p>{m.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="modalidad reveal">
+      <Icono nombre="pin" />
+      {c.bajada}
+    </p>
+  </div>
+</section>
+
+<style>
+  .modos {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .modo {
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    border-radius: var(--radio-l);
+    color: var(--tinta);
+  }
+  .modo--lima {
+    background: var(--lima);
+  }
+  .modo--rosa {
+    background: var(--rosa);
+  }
+  .modo__titulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    line-height: 1.2;
+    margin-bottom: 0.85rem;
+  }
+  .modalidad {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+  }
+  .modalidad :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--violeta);
+    flex: none;
+  }
+  @media (min-width: 760px) {
+    .modos {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import { perfil } from '../data/perfil';
+import { fotoDePerfil } from '../lib/imagenes';
+import Foto from './Foto.astro';
+
+const { sobreMi } = perfil;
+const foto = fotoDePerfil();
+---
+
+<section id="sobre-mi" class="seccion tema-blanco" aria-labelledby="sobre-mi-titulo">
+  <div class="contenedor">
+    <div class="sobre__grilla">
+      <div class="sobre__texto">
+        <h2 id="sobre-mi-titulo" class="titulo-seccion reveal">{sobreMi.titulo}</h2>
+        <p class="sobre__parrafo reveal" style="--retraso: 0.08s">{sobreMi.texto}</p>
+      </div>
+      <div class="sobre__foto reveal" style="--retraso: 0.12s">
+        <span class="sobre__forma" aria-hidden="true"></span>
+        <Foto
+          src={foto}
+          alt={`Retrato de ${perfil.nombre}`}
+          leyenda="Foto de perfil"
+          ratio="4 / 5"
+          sizes="(min-width: 900px) 400px, 80vw"
+          widths={[360, 560, 800]}
+          class="sobre__img"
+        />
+      </div>
+    </div>
+
+    <ul class="cifras reveal" aria-label="Algunas cifras">
+      {
+        sobreMi.cifras.map((c) => (
+          <li class="cifra">
+            <span class="cifra__valor">{c.valor}</span>
+            <span class="cifra__etiqueta">{c.etiqueta}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .sobre__grilla {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .sobre__parrafo {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    max-width: 62ch;
+  }
+  .sobre__foto {
+    position: relative;
+    width: min(100%, 340px);
+    justify-self: center;
+  }
+  .sobre__forma {
+    position: absolute;
+    inset: auto -6% -8% auto;
+    width: 62%;
+    aspect-ratio: 1;
+    border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+    background: var(--rosa);
+  }
+  .sobre__foto :global(.sobre__img) {
+    position: relative;
+    border-radius: var(--radio-l);
+  }
+
+  .cifras {
+    margin-top: clamp(3rem, 7vw, 5rem);
+    display: grid;
+    gap: 1.75rem;
+    padding: clamp(1.75rem, 5vw, 3.25rem);
+    background: var(--violeta);
+    color: var(--blanco);
+    border-radius: var(--radio-l);
+  }
+  .cifra {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .cifra__valor {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(3rem, 9vw, 4.75rem);
+    line-height: 1;
+    color: var(--lima);
+    min-width: 1.1ch;
+  }
+  .cifra__etiqueta {
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    max-width: 18ch;
+  }
+
+  @media (min-width: 900px) {
+    .sobre__grilla {
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 4rem;
+    }
+    .cifras {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .cifra {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+</style>

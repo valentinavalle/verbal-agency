@@ -1,0 +1,347 @@
+/* ==========================================================================
+   Lima eléctrica — tokens y estilos base
+   ========================================================================== */
+
+:root {
+  /* Paleta */
+  --violeta: #6b3df5;
+  --lima: #d4f54a;
+  --rosa: #ffb3d9;
+  --tinta: #1c1a27;
+  --lavanda: #f6f4ff;
+  --blanco: #ffffff;
+  /* Texto secundario sobre blanco/lavanda (cumple AA) */
+  --tinta-suave: #524f66;
+  /* Línea fina sobre fondos claros */
+  --linea: #ddd6f7;
+
+  /* Tipografía */
+  --fuente-titulo: 'Unbounded', 'Trebuchet MS', 'Arial Black', system-ui, sans-serif;
+  --fuente-cuerpo: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  /* Formas */
+  --radio-s: 16px;
+  --radio-m: 28px;
+  --radio-l: 40px;
+  --pildora: 999px;
+
+  /* Layout */
+  --ancho: 1180px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --alto-header: 72px;
+  --seccion-y: clamp(4rem, 9vw, 7rem);
+
+  /* Contexto de color (las secciones lo redefinen) */
+  --fg: var(--tinta);
+  --fg-suave: var(--tinta-suave);
+  --bg: var(--blanco);
+  --foco: var(--violeta);
+  --enlace: var(--violeta);
+}
+
+/* Secciones temáticas: definen texto, foco y enlaces para su fondo */
+.tema-violeta {
+  --fg: var(--blanco);
+  --fg-suave: var(--blanco);
+  --bg: var(--violeta);
+  --foco: var(--lima);
+  --enlace: var(--lima);
+  background: var(--bg);
+  color: var(--fg);
+}
+.tema-tinta {
+  --fg: var(--blanco);
+  --fg-suave: #d9d6e8;
+  --bg: var(--tinta);
+  --foco: var(--lima);
+  --enlace: var(--lima);
+  background: var(--bg);
+  color: var(--fg);
+}
+.tema-lavanda {
+  --bg: var(--lavanda);
+  background: var(--bg);
+}
+.tema-blanco {
+  background: var(--blanco);
+}
+
+/* ---------- Reset mínimo ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+body {
+  margin: 0;
+  background: var(--blanco);
+  color: var(--tinta);
+  font-family: var(--fuente-cuerpo);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+  overflow-x: clip; /* las formas decorativas no generan scroll horizontal */
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+a {
+  color: var(--enlace);
+  text-underline-offset: 0.2em;
+}
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---------- Foco visible ---------- */
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.saltar {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--lima);
+  color: var(--tinta);
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--pildora);
+  font-weight: 500;
+  text-decoration: none;
+}
+.saltar:focus {
+  top: 0.75rem;
+  outline: 3px solid var(--tinta);
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Layout ---------- */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.seccion {
+  padding-block: var(--seccion-y);
+  scroll-margin-top: var(--alto-header);
+  overflow-x: clip;
+}
+
+/* ---------- Tipografía ---------- */
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.titulo-seccion {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4.6vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: clamp(1.5rem, 4vw, 2.75rem);
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.bajada {
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  color: var(--fg-suave);
+  max-width: 46ch;
+}
+.subrayado-lima {
+  text-decoration: underline;
+  text-decoration-color: var(--lima);
+  text-decoration-thickness: 0.22em;
+  text-underline-offset: 0.12em;
+}
+
+/* ---------- Botones (píldora) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0.8rem 1.75rem;
+  border: 2px solid transparent;
+  border-radius: var(--pildora);
+  font-family: var(--fuente-cuerpo);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+}
+.btn:hover {
+  transform: translateY(-3px);
+}
+.btn:active {
+  transform: translateY(-1px);
+}
+/* Sobre lima/rosa el texto va siempre en tinta */
+.btn--lima {
+  background: var(--lima);
+  color: var(--tinta);
+}
+.btn--lima:hover {
+  background: var(--blanco);
+}
+.btn--rosa {
+  background: var(--rosa);
+  color: var(--tinta);
+}
+.btn--rosa:hover {
+  background: var(--blanco);
+}
+.btn--violeta {
+  background: var(--violeta);
+  color: var(--blanco);
+}
+.btn--violeta:hover {
+  background: var(--tinta);
+}
+.btn--borde-claro {
+  border-color: var(--blanco);
+  color: var(--blanco);
+  background: transparent;
+}
+.btn--borde-claro:hover {
+  background: var(--blanco);
+  color: var(--violeta);
+}
+
+/* ---------- Chips y etiquetas ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-radius: var(--pildora);
+  background: var(--lavanda);
+  color: var(--tinta);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border: 1.5px solid var(--linea);
+}
+.etiqueta {
+  display: inline-flex;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--pildora);
+  background: var(--rosa);
+  color: var(--tinta);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* ---------- Círculo con número ---------- */
+.numero {
+  display: inline-grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--lima);
+  color: var(--tinta);
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: 1rem;
+  flex: none;
+}
+
+/* ---------- Aparición suave al hacer scroll ---------- */
+/* Solo se oculta si hay JS (clase .js en <html>) y el usuario no pidió menos movimiento. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--retraso, 0s);
+  }
+  .js .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .btn:hover,
+  .btn:active {
+    transform: none;
+  }
+}
+
+main:focus {
+  outline: none;
+}
+
+strong {
+  font-weight: 500;
+}

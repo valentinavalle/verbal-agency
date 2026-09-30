@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base titulo="Página no encontrada · Valentina Valle" descripcion="Esta página no existe.">
+  <section class="seccion tema-violeta perdida">
+    <div class="contenedor">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="titulo">Uy, acá no hay nada.</h1>
+      <p class="bajada">Esta página no existe o cambió de lugar.</p>
+      <a href="/" class="btn btn--lima">Volver al inicio</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .perdida {
+    min-height: 70vh;
+    display: grid;
+    align-items: center;
+  }
+  .perdida h1 {
+    font-size: clamp(2.25rem, 8vw, 4.5rem);
+    margin-bottom: 1rem;
+    color: var(--lima);
+  }
+  .perdida .eyebrow {
+    color: var(--blanco);
+  }
+  .perdida .bajada {
+    color: var(--blanco);
+    margin-bottom: 2rem;
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+import { perfil } from '../data/perfil';
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie tema-tinta">
+  <div class="contenedor pie__fila">
+    <p>© {anio} {perfil.nombre} · {perfil.ubicacion}</p>
+    <ul class="pie__links">
+      <li><a href={`mailto:${perfil.contacto.mail}`}>Mail</a></li>
+      <li><a href={perfil.contacto.whatsappLink} target="_blank" rel="noopener">WhatsApp</a></li>
+      <li><a href={perfil.contacto.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    padding-block: 2rem;
+    font-size: 0.9375rem;
+    border-top: 1px solid rgb(255 255 255 / 0.14);
+  }
+  .pie__fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pie__links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .pie a {
+    color: var(--blanco);
+  }
+  .pie a:hover {
+    color: var(--lima);
+  }
+</style>

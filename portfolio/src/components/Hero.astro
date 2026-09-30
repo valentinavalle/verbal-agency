@@ -1,0 +1,155 @@
+---
+import { perfil } from '../data/perfil';
+import Icono from './Icono.astro';
+---
+
+<section id="inicio" class="hero tema-violeta" aria-labelledby="hero-titulo">
+  <div class="contenedor hero__grilla">
+    <div class="hero__texto">
+      <p class="eyebrow hero__eyebrow reveal">
+        <Icono nombre="pin" />
+        {perfil.ubicacion}
+      </p>
+      <h1 id="hero-titulo" class="titulo hero__nombre reveal" style="--retraso: 0.08s">
+        <span class="hero__nombre-1">{perfil.nombrePila}</span>
+        <span class="hero__nombre-2">{perfil.apellido}</span>
+      </h1>
+      <p class="hero__bajada reveal" style="--retraso: 0.16s">{perfil.bajada}</p>
+      <div class="hero__botones reveal" style="--retraso: 0.24s">
+        <a href="#proyectos" class="btn btn--lima">Ver proyectos</a>
+        <a href="#contacto" class="btn btn--rosa">Hablemos</a>
+      </div>
+    </div>
+
+    <div class="hero__arte" aria-hidden="true">
+      <svg class="hero__blob" viewBox="0 0 200 200">
+        <path
+          fill="var(--lima)"
+          transform="translate(100 100)"
+          d="M44.7,-51.2C56.9,-40.3,64.6,-24.4,66.5,-7.9C68.4,8.6,64.5,25.7,54.6,38.5C44.7,51.3,28.8,59.8,11.3,63.5C-6.2,67.2,-25.3,66.1,-40.5,57C-55.7,47.9,-67,30.8,-69.9,12.7C-72.8,-5.4,-67.3,-24.5,-55.9,-35.6C-44.5,-46.7,-27.2,-49.8,-10.6,-53.4C6,-57,32.5,-62.1,44.7,-51.2Z"
+        ></path>
+      </svg>
+      <div class="hero__sello">{perfil.hero.sello}</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 8vw, 6.5rem) clamp(3.5rem, 8vw, 7rem);
+    overflow: hidden;
+    scroll-margin-top: var(--alto-header);
+  }
+  .hero__grilla {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .hero .eyebrow {
+    color: var(--lima);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .hero__eyebrow :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .hero__nombre {
+    font-size: clamp(2.6rem, 13.5vw, 5.5rem);
+    margin-bottom: 1.5rem;
+  }
+  .hero__nombre-1,
+  .hero__nombre-2 {
+    display: block;
+  }
+  .hero__nombre-1 {
+    color: var(--blanco);
+  }
+  .hero__nombre-2 {
+    color: var(--lima);
+  }
+  .hero__bajada {
+    font-size: clamp(1.125rem, 2.6vw, 1.5rem);
+    line-height: 1.4;
+    max-width: 24ch;
+    margin-bottom: 2.25rem;
+  }
+  .hero__botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
+  /* Forma orgánica + sello (decorativos) */
+  .hero__arte {
+    position: relative;
+    width: min(62vw, 300px);
+    aspect-ratio: 1;
+    justify-self: start;
+  }
+  .hero__blob {
+    position: absolute;
+    inset: -8%;
+    width: 116%;
+    height: 116%;
+    max-width: none;
+  }
+  .hero__sello {
+    position: absolute;
+    right: -6%;
+    bottom: 2%;
+    width: 46%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 50%;
+    background: var(--rosa);
+    color: var(--tinta);
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: clamp(0.55rem, 1.9vw, 0.72rem);
+    line-height: 1.3;
+    transform: rotate(-9deg);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__blob {
+      animation: flotar 9s ease-in-out infinite alternate;
+    }
+    .hero__sello {
+      animation: girar 7s ease-in-out infinite alternate;
+    }
+  }
+  @keyframes flotar {
+    to {
+      transform: rotate(8deg) scale(1.03);
+    }
+  }
+  @keyframes girar {
+    from {
+      transform: rotate(-9deg);
+    }
+    to {
+      transform: rotate(-3deg);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .hero__grilla {
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 3rem;
+    }
+    .hero__nombre {
+      font-size: clamp(3rem, 9vw, 6.75rem);
+    }
+    .hero__arte {
+      justify-self: center;
+      width: min(100%, 360px);
+    }
+    .hero__sello {
+      font-size: 0.78rem;
+    }
+  }
+</style>

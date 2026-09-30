@@ -1,0 +1,102 @@
+---
+import { perfil } from '../data/perfil';
+
+const { trayectoria } = perfil;
+---
+
+<section id="trayectoria" class="seccion tema-lavanda" aria-labelledby="trayectoria-titulo">
+  <div class="contenedor">
+    <h2 id="trayectoria-titulo" class="titulo-seccion reveal">{trayectoria.titulo}</h2>
+
+    <ol class="linea">
+      {
+        trayectoria.items.map((t, i) => (
+          <li class="puesto reveal" style={`--retraso: ${i * 0.05}s`}>
+            <div class="puesto__fecha">
+              <span class="puesto__pildora">{t.fecha}</span>
+              {t.actual && <span class="etiqueta">Actual</span>}
+            </div>
+            <div class="puesto__cuerpo">
+              <h3 class="puesto__empresa">{t.empresa}</h3>
+              <p class="puesto__rol">{t.rol}</p>
+              <ul class="puesto__puntos">
+                {t.puntos.map((punto) => (
+                  <li>{punto}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .linea {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .puesto {
+    display: grid;
+    gap: 1rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    background: var(--blanco);
+    border-radius: var(--radio-m);
+  }
+  .puesto__fecha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .puesto__pildora {
+    display: inline-flex;
+    padding: 0.4rem 1rem;
+    border-radius: var(--pildora);
+    background: var(--lima);
+    color: var(--tinta);
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
+  .puesto__empresa {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+  }
+  .puesto__rol {
+    font-weight: 500;
+    color: var(--violeta);
+    margin-bottom: 0.9rem;
+  }
+  .puesto__puntos {
+    display: grid;
+    gap: 0.4rem;
+    color: var(--tinta-suave);
+  }
+  .puesto__puntos li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+  .puesto__puntos li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--violeta);
+  }
+
+  @media (min-width: 900px) {
+    .puesto {
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

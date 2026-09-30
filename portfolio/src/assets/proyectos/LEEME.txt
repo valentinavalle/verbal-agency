@@ -1,0 +1,2 @@
+Una carpeta por caso, con el mismo nombre que el "slug" en src/data/proyectos.ts.
+La primera foto (por orden alfabético: 01.jpg, 02.jpg…) es la portada; el resto es la galería.

@@ -1,0 +1,469 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Foto from '../../components/Foto.astro';
+import Icono from '../../components/Icono.astro';
+import { perfil } from '../../data/perfil';
+import { proyectos, numeroDe } from '../../data/proyectos';
+import { fotosDeProyecto } from '../../lib/imagenes';
+
+export function getStaticPaths() {
+  return proyectos.map((proyecto, indice) => ({
+    params: { slug: proyecto.slug },
+    props: { proyecto, indice },
+  }));
+}
+
+const { proyecto: p, indice } = Astro.props;
+const numero = numeroDe(indice);
+const anterior = proyectos[indice - 1];
+const siguiente = proyectos[indice + 1];
+
+const fotos = fotosDeProyecto(p.slug);
+const portada = fotos[0];
+const galeria = fotos.slice(1);
+const altDe = (i: number) => p.alts?.[i] ?? `${p.marca}: ${p.titulo} (foto ${i + 1})`;
+
+// Al compartir el caso se usa su portada; si no hay foto, la imagen general del sitio.
+const imagenOg = portada
+  ? (await getImage({ src: portada.src, width: 1200, height: 630, format: 'jpeg' })).src
+  : '/og.png';
+
+const puntos = Array.isArray(p.hice) ? p.hice : null;
+---
+
+<Base
+  titulo={`${p.titulo} · ${perfil.nombre}`}
+  descripcion={p.descripcion}
+  imagen={imagenOg}
+  tipo="article"
+>
+  <article>
+    <header class="caso tema-violeta">
+      <div class="contenedor">
+        <a href="/#proyectos" class="caso__volver">
+          <Icono nombre="flechaIzq" />
+          Todos los proyectos
+        </a>
+        <div class="caso__cabecera">
+          <span class="numero caso__numero" aria-hidden="true">{numero}</span>
+          <p class="caso__marca">{p.marca}</p>
+        </div>
+        <h1 class="titulo caso__titulo">{p.titulo}</h1>
+        <ul class="caso__etiquetas" aria-label="Temas">
+          {p.etiquetas.map((e) => <li class="etiqueta">{e}</li>)}
+        </ul>
+      </div>
+    </header>
+
+    <div class="caso__portada contenedor">
+      <Foto
+        src={portada?.src}
+        alt={altDe(0)}
+        leyenda="Foto del proyecto"
+        ratio="16 / 9"
+        sizes="(min-width: 1180px) 1116px, 100vw"
+        widths={[640, 960, 1280, 1600]}
+        eager
+        class="caso__portada-foto"
+      />
+    </div>
+
+    <div class="seccion tema-blanco caso__cuerpo">
+      <div class="contenedor">
+        {
+          p.desafio && (
+            <section class="bloque" aria-labelledby="t-desafio">
+              <h2 id="t-desafio" class="bloque__titulo">
+                <span class="subrayado-lima">El desafío</span>
+              </h2>
+              <p class="bloque__texto">{p.desafio}</p>
+            </section>
+          )
+        }
+
+        <section class="bloque" aria-labelledby="t-hice">
+          <h2 id="t-hice" class="bloque__titulo">
+            <span class="subrayado-lima">Qué hice</span>
+          </h2>
+          {
+            puntos ? (
+              <ul class="bloque__lista">
+                {puntos.map((x) => (
+                  <li>{x}</li>
+                ))}
+              </ul>
+            ) : (
+              <p class="bloque__texto">{p.hice}</p>
+            )
+          }
+        </section>
+
+        {
+          p.eventos && (
+            <section class="bloque" aria-labelledby="t-eventos">
+              <h2 id="t-eventos" class="bloque__titulo">
+                <span class="subrayado-lima">Algunos eventos</span>
+              </h2>
+              <ul class="chips">
+                {p.eventos.map((e) => (
+                  <li class="chip">{e}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          (p.resultado || p.destacado) && (
+            <section class="bloque" aria-labelledby="t-resultado">
+              <h2 id="t-resultado" class="bloque__titulo">
+                <span class="subrayado-lima">Resultado</span>
+              </h2>
+              <div class="bloque__texto">
+                {p.destacado && <p class="destacado">{p.destacado}</p>}
+                {p.resultado && <p>{p.resultado}</p>}
+              </div>
+            </section>
+          )
+        }
+
+        {
+          p.cifras && (
+            <ul class="cifras" aria-label="Cifras del proyecto">
+              {p.cifras.map((c) => (
+                <li>
+                  <span class="cifras__valor">{c.valor}</span>
+                  <span class="cifras__etiqueta">{c.etiqueta}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </div>
+
+    {
+      (galeria.length > 0 || fotos.length === 0) && (
+        <section class="seccion tema-lavanda galeria" aria-labelledby="t-galeria">
+          <div class="contenedor">
+            <h2 id="t-galeria" class="titulo-seccion">Galería</h2>
+            <ul class="galeria__lista">
+              {
+                fotos.length === 0
+                  ? [0, 1].map(() => (
+                      <li>
+                        <Foto leyenda="Foto del proyecto" ratio="4 / 3" />
+                      </li>
+                    ))
+                  : galeria.map((f, i) => (
+                      <li>
+                        <Image
+                          src={f.src}
+                          alt={altDe(i + 1)}
+                          widths={[480, 800, 1200]}
+                          sizes="(min-width: 760px) 560px, 100vw"
+                          loading="lazy"
+                          decoding="async"
+                          class="galeria__img"
+                        />
+                      </li>
+                    ))
+              }
+            </ul>
+          </div>
+        </section>
+      )
+    }
+
+    <nav class="otros tema-blanco" aria-label="Otros proyectos">
+      <div class="contenedor otros__fila">
+        {
+          anterior ? (
+            <a href={`/proyectos/${anterior.slug}`} class="otro">
+              <span class="otro__dir">← Anterior</span>
+              <span class="otro__titulo">
+                <span class="numero otro__numero" aria-hidden="true">
+                  {numeroDe(indice - 1)}
+                </span>
+                {anterior.titulo}
+              </span>
+            </a>
+          ) : (
+            <span />
+          )
+        }
+        {
+          siguiente && (
+            <a href={`/proyectos/${siguiente.slug}`} class="otro otro--der">
+              <span class="otro__dir">Siguiente →</span>
+              <span class="otro__titulo">
+                <span class="numero otro__numero" aria-hidden="true">
+                  {numeroDe(indice + 1)}
+                </span>
+                {siguiente.titulo}
+              </span>
+            </a>
+          )
+        }
+      </div>
+    </nav>
+
+    <section class="cierre tema-violeta" aria-labelledby="t-cierre">
+      <div class="contenedor cierre__fila">
+        <h2 id="t-cierre" class="titulo cierre__titulo">¿Armamos algo así?</h2>
+        <div class="cierre__botones">
+          <a href={`mailto:${perfil.contacto.mail}`} class="btn btn--lima">Escribime un mail</a>
+          <a href={perfil.contacto.whatsappLink} class="btn btn--rosa" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .caso {
+    padding-block: clamp(2rem, 5vw, 3.5rem) clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .caso__volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--blanco);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+  }
+  .caso__volver:hover {
+    color: var(--lima);
+  }
+  .caso__volver :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .caso__cabecera {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .caso__marca {
+    color: var(--lima);
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .caso__titulo {
+    font-size: clamp(1.9rem, 6.2vw, 4rem);
+    max-width: 20ch;
+    margin-bottom: 1.5rem;
+    overflow-wrap: break-word;
+  }
+  .caso__etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* La portada "cuelga" del bloque violeta */
+  .caso__portada {
+    margin-top: calc(-1 * clamp(1.5rem, 4vw, 2.5rem));
+    position: relative;
+    z-index: 1;
+  }
+  .caso__portada :global(.caso__portada-foto) {
+    border-radius: var(--radio-l);
+  }
+
+  .caso__cuerpo {
+    padding-block: clamp(3rem, 7vw, 5rem);
+  }
+  .bloque {
+    display: grid;
+    gap: 1rem;
+    padding-block: clamp(1.25rem, 3vw, 2rem);
+  }
+  .bloque__titulo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    line-height: 1.2;
+  }
+  .bloque__texto {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    max-width: 62ch;
+  }
+  .bloque__lista {
+    display: grid;
+    gap: 0.75rem;
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .bloque__lista li {
+    position: relative;
+    padding-left: 1.75rem;
+  }
+  .bloque__lista li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--violeta);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .destacado {
+    display: inline-block;
+    padding: clamp(1.25rem, 4vw, 2.25rem) clamp(1.5rem, 5vw, 3.5rem);
+    margin-bottom: 1.25rem;
+    border-radius: var(--radio-l);
+    background: var(--violeta);
+    color: var(--lima);
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 12vw, 6.5rem);
+    line-height: 1;
+  }
+
+  .cifras {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    padding: clamp(1.75rem, 5vw, 3rem);
+    background: var(--violeta);
+    color: var(--blanco);
+    border-radius: var(--radio-l);
+  }
+  .cifras li {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .cifras__valor {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(3rem, 9vw, 4.75rem);
+    line-height: 1;
+    color: var(--lima);
+    min-width: 1.1ch;
+  }
+  .cifras__etiqueta {
+    font-size: 1.0625rem;
+    max-width: 16ch;
+    line-height: 1.35;
+  }
+
+  .galeria__lista {
+    display: grid;
+    gap: 1rem;
+  }
+  .galeria__img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radio-m);
+  }
+  .galeria__lista :global(.foto) {
+    border-radius: var(--radio-m);
+  }
+
+  .otros {
+    padding-block: 2.5rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .otros__fila {
+    display: grid;
+    gap: 1rem;
+  }
+  .otro {
+    display: grid;
+    gap: 0.6rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radio-m);
+    background: var(--lavanda);
+    color: var(--tinta);
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+  .otro:hover {
+    transform: translateY(-4px);
+    background: var(--violeta);
+    color: var(--blanco);
+  }
+  .otro__dir {
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  .otro__titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-family: var(--fuente-titulo);
+    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+  .otro__numero {
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 0.85rem;
+  }
+
+  .cierre {
+    padding-block: clamp(3rem, 7vw, 5rem);
+  }
+  .cierre__fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.75rem;
+  }
+  .cierre__titulo {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+  }
+  .cierre__botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 760px) {
+    .bloque {
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+    }
+    .galeria__lista {
+      display: block;
+      columns: 2;
+      column-gap: 1.25rem;
+    }
+    .galeria__lista li {
+      break-inside: avoid;
+      margin-bottom: 1.25rem;
+    }
+    .cifras {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .cifras li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .otros__fila {
+      grid-template-columns: 1fr 1fr;
+    }
+    .otro--der {
+      grid-column: 2;
+    }
+  }
+</style>

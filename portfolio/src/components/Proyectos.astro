@@ -1,0 +1,70 @@
+---
+import { perfil } from '../data/perfil';
+import { proyectos, numeroDe } from '../data/proyectos';
+import ProyectoCard from './ProyectoCard.astro';
+
+const { proyectos: textos } = perfil;
+---
+
+<section id="proyectos" class="seccion tema-blanco" aria-labelledby="proyectos-titulo">
+  <div class="contenedor">
+    <h2 id="proyectos-titulo" class="titulo-seccion reveal">{textos.titulo}</h2>
+    <p class="bajada proyectos__bajada reveal">{textos.bajada}</p>
+
+    <ul class="grilla">
+      {
+        proyectos.map((p, i) => (
+          <li class="reveal" style={`--retraso: ${(i % 3) * 0.08}s`}>
+            <ProyectoCard proyecto={p} numero={numeroDe(i)} />
+          </li>
+        ))
+      }
+      <li class="cta-card reveal">
+        <p class="cta-card__texto">¿Tenés un proyecto en mente?</p>
+        <a href="#contacto" class="btn btn--violeta">Hablemos</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .proyectos__bajada {
+    margin-top: calc(-1 * clamp(0.75rem, 2vw, 1.75rem));
+    margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+  }
+  .grilla {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .cta-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    border-radius: var(--radio-m);
+    background: var(--rosa);
+    color: var(--tinta);
+  }
+  .cta-card__texto {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    line-height: 1.2;
+  }
+  @media (min-width: 640px) {
+    .grilla {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .grilla {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .cta-card {
+      grid-column: span 2;
+    }
+  }
+</style>
